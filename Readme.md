@@ -5,9 +5,9 @@
 -- Watching image in folder Result: [./guid/results]
 
 ### Deploy
-cd client
-npm install
-npm start
+-- cd client
+-- npm install
+-- npm start
 
-http://localhost:3000
+-- http://localhost:3000
 
