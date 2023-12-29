@@ -1,0 +1,43 @@
+export async function getGroups(idToken) {
+  console.log('Fetching groups')
+
+  const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/groups`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`
+    }
+  })
+  const result = await response.json()
+
+  return result.items
+}
+
+export async function createGroup(idToken, newGroup) {
+  const reply = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/groups`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`
+    },
+    body: JSON.stringify({
+      name: newGroup.name,
+      description: newGroup.description,
+      file: newGroup.file
+    })
+  })
+  const result = await reply.json()
+  return result.newItem
+}
+
+export async function deleteGroup(idToken, idGroup) {
+  const reply = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/groups/delete/${idGroup}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`
+    },
+    body: JSON.stringify({})
+  })
+  const result = await reply.json()
+  return result
+}
